@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "action_server_impl.hpp"
 #include "unused.hpp"
 #include "flight_mode.hpp"
@@ -148,9 +150,11 @@ void ActionServerImpl::init()
                                   MAV_RESULT_TEMPORARILY_REJECTED;
             }
 
-            if (request_ack == MAV_RESULT::MAV_RESULT_ACCEPTED) {
-                set_server_armed(armDisarm.arm);
-            }
+            // The armed state does not come from MAVSDK anymore. It must be notified to server plugin by the user.
+            // if (request_ack == MAV_RESULT::MAV_RESULT_ACCEPTED) {
+            //     set_server_armed(armDisarm.arm);
+            // }
+            std::cout << "Não armei!!!\n";
 
             auto result = (request_ack == MAV_RESULT::MAV_RESULT_ACCEPTED) ?
                               ActionServer::Result::Success :
