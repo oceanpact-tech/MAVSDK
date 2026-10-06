@@ -23,6 +23,7 @@ ServerComponentImpl::ServerComponentImpl(
     _mavlink_ftp_server(*this)
 {
     _autopilot_version.capabilities |= MAV_PROTOCOL_CAPABILITY_MAVLINK2;
+    _autopilot_version.flight_sw_version = (1u << 24) | (14u << 16) | (0u << 8) | 225u; // PX 1.14.4	
 
     if (!MavlinkChannels::Instance().checkout_free_channel(_channel)) {
         // We use a default of channel 0 which will still work but not track
